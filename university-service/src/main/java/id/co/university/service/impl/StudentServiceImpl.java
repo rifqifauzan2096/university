@@ -73,11 +73,23 @@ public class StudentServiceImpl {
     }
 
     public List<StudentWrapper> getAll(){
-        return toWrapperList((List<Student>) studentRepository.findAll());
+        return toWrapperList((List<Student>) studentRepository.getDataList());
     }
 
     public StudentWrapper getById(Long id){
         Optional<Student> optStudent = studentRepository.findById(id);
         return optStudent.map(this::toWrapper).orElse(null);
+    }
+
+    public Boolean delete(Long id){
+        Optional<Student> optStudent = studentRepository.findById(id);
+        if (optStudent.isPresent()){
+            Student model = optStudent.get();
+            model.setDeleted(true);
+            studentRepository.save(model);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

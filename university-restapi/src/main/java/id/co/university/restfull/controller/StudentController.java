@@ -42,4 +42,12 @@ public class StudentController {
     public List<StudentWrapper> getList(){
         return studentService.getAll();
     }
+
+    @PostMapping(value = "/delete/{id}")
+    public String delete(@PathVariable("id") Long id){
+        studentService.delete(id);
+        StudentWrapper wrapper = studentService.getById(id);
+
+        return "Delete Data " + wrapper.getFullname() + " Succesfully";
+    }
 }
