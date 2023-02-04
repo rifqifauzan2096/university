@@ -1,7 +1,5 @@
 package id.co.university.restfull.controller;
 
-
-import id.co.university.backend.model.Student;
 import id.co.university.service.impl.StudentServiceImpl;
 import id.co.university.service.wrapper.StudentWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/student")
@@ -49,7 +46,7 @@ public class StudentController {
             rMap.put("status", "200");
             rMap.put("datas", wrapper);
         } else {
-            rMap.put("message", "Failed to saved");
+            rMap.put("message", "Failed to update");
             rMap.put("status", "200");
         }
 
